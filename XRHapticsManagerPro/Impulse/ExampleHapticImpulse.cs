@@ -4,7 +4,7 @@
 
 public class ExampleHapticImpulse : HapticImpulse
 {
-    public ExampleHapticImpulse(HapticData<ExampleType> scriptableObject, VRHapticsManager manager) //<< change ExampleHapticImpulse to be YOURTYPEHapticImpulse and ExampleType to your Type
+    public ExampleHapticImpulse(HapticData<ExampleType> scriptableObject, XRHapticsManagerPro manager) //<< change ExampleHapticImpulse to be YOURTYPEHapticImpulse and ExampleType to your Type
     {
         data = scriptableObject;
         removeAction += manager.RemoveHaptic;

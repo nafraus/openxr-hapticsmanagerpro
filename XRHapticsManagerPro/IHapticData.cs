@@ -1,13 +1,15 @@
 using UnityEngine;
 
-public interface IHapticData<T>
+public abstract class GenericHapticData : ScriptableObject
 {
-    public abstract T Value { get; }
+    //public abstract T Value { get; }
     public XRHapticsApplyType Type { get; }
     
     public float MaxDuration { get; }
     //public int OperationLayer { get; }
     //public int PriorityLayer { get; }
+
+    public abstract HapticImpulse GenerateImpulse(XRHapticsManagerPro manager);
 }
 
 public enum XRHapticsApplyType

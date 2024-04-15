@@ -4,7 +4,7 @@ using UnityEngine;
 //Uncomment and change the names in the line above
 public class ExampleHapticDataSO : HapticData<ExampleType> //Replace ExampleType with the type you are using
 {
-    public override HapticImpulse GenerateImpulse(VRHapticsManager manager)
+    public override HapticImpulse GenerateImpulse(XRHapticsManagerPro manager)
     {
         return new ExampleHapticImpulse(this, manager); //Replace ExampleHapticImpulse with the haptic impulse you create
     }

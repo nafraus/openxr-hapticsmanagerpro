@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Todo Genericize This so that it can be passed into inspector easier
 
-public abstract class HapticData<T> : ScriptableObject, IHapticData<T>
+public abstract class HapticData<T> : GenericHapticData
 {
     //Look into serialized properties
     [SerializeField] protected T intensity;
@@ -13,8 +13,9 @@ public abstract class HapticData<T> : ScriptableObject, IHapticData<T>
     [SerializeField] protected int operationLayer;
     [SerializeField] protected int priorityLayer;
 
-    #region IHapticData Implementation
     public T Value { get => intensity; }
+
+    #region IHapticData Implementation
     public XRHapticsApplyType Type { get => type; }
     public float MaxDuration { get => duration; }
     //public int OperationLayer { get => operationLayer; }
@@ -22,5 +23,5 @@ public abstract class HapticData<T> : ScriptableObject, IHapticData<T>
     #endregion
 
     //Rename
-    public abstract HapticImpulse GenerateImpulse(VRHapticsManager manager);
+    public override abstract HapticImpulse GenerateImpulse(XRHapticsManagerPro manager);
 }

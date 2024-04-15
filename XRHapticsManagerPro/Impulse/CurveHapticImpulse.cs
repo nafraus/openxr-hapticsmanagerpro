@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CurveHapticImpulse : HapticImpulse
 {
-    public CurveHapticImpulse(CurveHapticDataSO scriptableObject, VRHapticsManager manager)
+    public CurveHapticImpulse(CurveHapticDataSO scriptableObject, XRHapticsManagerPro manager)
     {
         data = scriptableObject;
         removeAction += manager.RemoveHaptic;

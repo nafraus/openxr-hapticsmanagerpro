@@ -1,6 +1,6 @@
 public class FloatHapticImpulse : HapticImpulse
 {
-    public FloatHapticImpulse(HapticData<float> scriptableObject, VRHapticsManager manager)
+    public FloatHapticImpulse(HapticData<float> scriptableObject, XRHapticsManagerPro manager)
     {
         data = scriptableObject;
         removeAction += manager.RemoveHaptic;
