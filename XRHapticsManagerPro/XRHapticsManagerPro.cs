@@ -3,9 +3,6 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
-using AnimationCurve = UnityEngine.AnimationCurve;
-using UnityEditor.TerrainTools;
-using System.Runtime.CompilerServices;
 
 public class XRHapticsManagerPro : MonoBehaviour
 {
