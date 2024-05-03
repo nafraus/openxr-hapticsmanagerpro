@@ -26,8 +26,6 @@ public class XRHapticsManagerPro : MonoBehaviour
         ActiveHapticImpulses.Add(rightInteractor, new List<HapticImpulse>());
     }
    
-    //Sending haptic impulse *maybe* needs to calculate and apply collective impulses
-    //Could change fixedupdate to be own coroutine
     private void FixedUpdate()
     {
         ProcessImpulses();
@@ -49,7 +47,6 @@ public class XRHapticsManagerPro : MonoBehaviour
 
             foreach (HapticImpulse data in pair.Value)
             {
-                //modify this to account for multipliers
                 switch (data.ImpulseType)
                 {
                     case XRHapticsApplyType.Additive:
@@ -88,40 +85,39 @@ public class XRHapticsManagerPro : MonoBehaviour
     }
 
     #region Sending Haptic Impulses from Haptic Data objects. Add new functions for each type
-    public void SendHapticImpulse(HapticImpulse impulse, XRDirectInteractor interactor)
+    public void SendHapticImpulse(HapticData data, XRDirectInteractor interactor)
     {
-        ActiveHapticImpulses[interactor].Add(impulse);
+        ActiveHapticImpulses[interactor].Add(data.GenerateImpulse(this));
     }
     #region Adapters
-    public void SendHapticImpulse(HapticImpulse impulse, XRBaseInteractable interactable)
+    public void SendHapticImpulse(HapticData data, XRBaseInteractable interactable)
     {
-        //TODO Add optional parameter for number of interactors to apply to
         List<IXRSelectInteractor> interactors = interactable.interactorsSelecting;
 
         foreach (IXRSelectInteractor interactor in interactors)
         {
-            SendHapticImpulse(impulse, interactor.transform.GetComponent<XRDirectInteractor>());
+            SendHapticImpulse(data, interactor.transform.GetComponent<XRDirectInteractor>());
         }
     }
 
-    public void SendHapticImpulse(HapticImpulse impulse, XRBaseController controller)
+    public void SendHapticImpulse(HapticData data, XRBaseController controller)
     {
-        SendHapticImpulse(impulse, controller.GetComponent<XRDirectInteractor>());
+        SendHapticImpulse(data, controller.GetComponent<XRDirectInteractor>());
     }
 
-    public void SendHapticImpulse(HapticImpulse impulse, XRHapticControllerSpecifier type)
+    public void SendHapticImpulse(HapticData data, XRHapticControllerSpecifier type)
     {
         switch (type)
         {
             case XRHapticControllerSpecifier.left:
-                SendHapticImpulse(impulse, leftInteractor);
+                SendHapticImpulse(data, leftInteractor);
                 break;
             case XRHapticControllerSpecifier.right:
-                SendHapticImpulse(impulse, rightInteractor);
+                SendHapticImpulse(data, rightInteractor);
                 break;
             case XRHapticControllerSpecifier.both:
-                SendHapticImpulse(impulse, leftInteractor);
-                SendHapticImpulse(impulse, rightInteractor);
+                SendHapticImpulse(data, leftInteractor);
+                SendHapticImpulse(data, rightInteractor);
                 break;
         }
     }
