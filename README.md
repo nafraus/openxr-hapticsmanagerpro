@@ -2,7 +2,8 @@
 System to expand upon the base functionality of sending haptic impulses in OpenXR for Unity. Allows the user to apply multiple haptic impulses to controllers, supports curves and custom types, and has different application types.
 
 ## Installation
-Download and install the .unitypackage from here: [link]
+Download a ZIP file from this page, extract it, and import the folder into your Unity project.
+A unity package for the preview release of XRHapticsManagerPro will come soon.
 
 ## Usage
 1. Create a new GameObject in your scene named 'HapticManager', and add the 'XRHapticsManagerPro" component.
@@ -30,7 +31,7 @@ public bool ActivateImpulse;
    }
 ```
 
-6.
+6. Save your script, and go back into Unity. Add your HapticData to the field you created in step 4, and that's all!
 
 ## HapticData
 HapticData is a typed scriptable object that the user creates to store information about the haptic impulse the user wants to send. Users will use the GenericHapticData class when creating fields in the inspector, and should not need to alter the HapticData class. XRHapticsManagerPro comes with FloatHapticData and CurveHapticData built in. See [Custom Types](#custom-types) to learn how to support other types. HapticData uses GenerateImpulse to generate a [HapticImpulse](#hapticimpulse) with writable data that is used by then XRHapticsManagerPro class.
