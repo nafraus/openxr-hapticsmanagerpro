@@ -30,10 +30,9 @@ public class XRHapticsManagerPro : MonoBehaviour
     //Could change fixedupdate to be own coroutine
     private void FixedUpdate()
     {
-        //All haptic impulses are subscribed to this action, and update their time
-
         ProcessImpulses();
-
+        
+        //All haptic impulses are subscribed to this action, and update their time
         AddTimeStepAction?.Invoke(timeStep);
     }
 
@@ -75,17 +74,13 @@ public class XRHapticsManagerPro : MonoBehaviour
 
     public void RemoveHaptic(HapticImpulse data)
     {
-        //TODO figure out how to do pointers in C# to optimize removal?
-
-        //There is definetly a way to optimize this
-        //This might remove any instance of data from the impulses. Might not cause errors, but will be suboptimal
         foreach(var pair in ActiveHapticImpulses)
         {
             List<HapticImpulse> impulses = pair.Value;
             if (impulses.Contains(data))
             {
-                //Garbage collecter wil destroy the class for me
-                impulses.Remove(data);
+                //Garbage collecter wil destroy the class
+                pair.Value.Remove(data);
             }
         }
 
