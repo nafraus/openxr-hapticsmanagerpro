@@ -85,12 +85,12 @@ public class XRHapticsManagerPro : MonoBehaviour
     }
 
     #region Sending Haptic Impulses from Haptic Data objects. Add new functions for each type
-    public void SendHapticImpulse(HapticData data, XRDirectInteractor interactor)
+    public void SendHapticImpulse(GenericHapticData data, XRDirectInteractor interactor)
     {
         ActiveHapticImpulses[interactor].Add(data.GenerateImpulse(this));
     }
     #region Adapters
-    public void SendHapticImpulse(HapticData data, XRBaseInteractable interactable)
+    public void SendHapticImpulse(GenericHapticData data, XRBaseInteractable interactable)
     {
         List<IXRSelectInteractor> interactors = interactable.interactorsSelecting;
 
@@ -100,12 +100,12 @@ public class XRHapticsManagerPro : MonoBehaviour
         }
     }
 
-    public void SendHapticImpulse(HapticData data, XRBaseController controller)
+    public void SendHapticImpulse(GenericHapticData data, XRBaseController controller)
     {
         SendHapticImpulse(data, controller.GetComponent<XRDirectInteractor>());
     }
 
-    public void SendHapticImpulse(HapticData data, XRHapticControllerSpecifier type)
+    public void SendHapticImpulse(GenericHapticData data, XRHapticControllerSpecifier type)
     {
         switch (type)
         {
